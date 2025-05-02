@@ -105,7 +105,7 @@ lapply(names(sorted_data), function(chr) {write.csv(sorted_data[[chr]], file=pas
 })
 ```
 
-Thus we have the required 20 files. A similar procedure is repeated for the teosinte data.
+Thus we have the required 20 files.
 ## Teosinte Dataset
 
 ```{r,include=FALSE}
@@ -133,7 +133,7 @@ lapply(names(sorted_data), function(chr) {
 })
 ```
 
-Next step is 10 files (1 for each chromosome) with SNPs ordered based on decreasing position values and with missing data encoded by this symbol: -
+Next we generate 10 files (1 for each chromosome) with SNPs ordered based on decreasing position values and with missing data encoded by this symbol: -
 
 ```{r,include=FALSE}
 teosinte_dec=teosinte
