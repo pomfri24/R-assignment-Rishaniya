@@ -26,7 +26,7 @@ Use the transposed data before joining
 fang_t <- read.delim("C:/Users/risha/Downloads/transposed_genotypes.txt")
 
 ```
-
+From the genotype data, we remove the rows containing Sample_ID and JG_OTU, and arrange the table based on the GROUP row as header to facilitate merging and sorting 
 
 ```{r}
 fang_t <- as.data.frame(fang_t)
@@ -146,7 +146,7 @@ lapply(names(sorted_data), function(chr) {
 })
 ```
 
-Now we have all the required files.
+Thus we have all the required files.
 
 # Part II Visualization
 
@@ -249,7 +249,7 @@ fang_long <- pivot_longer(fang,
                           names_to = "SNP", 
                           values_to = "Genotype")
 ```
-
+Let us analyse the proportion of homozygous and heterozygous sites in all of the groups
 ```{r}
 fang_long <- mutate(fang_long,Genotype_Type = case_when( Genotype == "?" ~ "Missing", str_detect(Genotype, "/") & str_sub(Genotype, 1, 1) ==str_sub(Genotype, 3, 3) ~ "Homozygous", str_detect(Genotype, "/") & str_sub(Genotype, 1, 1) != str_sub(Genotype, 3, 3) ~ "Heterozygous",TRUE ~ "Other" ))
 ```
