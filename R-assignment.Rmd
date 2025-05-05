@@ -27,7 +27,6 @@ fang_t <- read.delim("C:/Users/risha/Downloads/transposed_genotypes.txt")
 
 ```
 
-From the genotype data, we remove the rows containing Sample_ID and JG_OTU, and arrange the table based on the GROUP row as header to facilitate merging and sorting
 
 ```{r}
 fang_t <- as.data.frame(fang_t)
@@ -133,7 +132,7 @@ lapply(names(sorted_data), function(chr) {
 })
 ```
 
-Next we generate 10 files (1 for each chromosome) with SNPs ordered based on decreasing position values and with missing data encoded by this symbol: -
+Now we generate 10 files (1 for each chromosome) with SNPs ordered based on decreasing position values and with missing data encoded by this symbol: -
 
 ```{r,include=FALSE}
 teosinte_dec=teosinte
@@ -147,7 +146,7 @@ lapply(names(sorted_data), function(chr) {
 })
 ```
 
-Thus we have all required files.
+Now we have all the required files.
 
 # Part II Visualization
 
@@ -238,7 +237,7 @@ ggplot(data = both) +
     axis.title = element_text(size = 12)
   )
 ```
-we can see that the proportion of homozygous sites are higher compared to heterozygous sites.
+we can see that the proportion of homozygous sites are higher when compared to heterozygous sites.
 
 
 Step-3: Own Analysis
@@ -251,7 +250,6 @@ fang_long <- pivot_longer(fang,
                           values_to = "Genotype")
 ```
 
-Let us analyse the proportion of homozygous and heterozygous sites in all of the groups
 ```{r}
 fang_long <- mutate(fang_long,Genotype_Type = case_when( Genotype == "?" ~ "Missing", str_detect(Genotype, "/") & str_sub(Genotype, 1, 1) ==str_sub(Genotype, 3, 3) ~ "Homozygous", str_detect(Genotype, "/") & str_sub(Genotype, 1, 1) != str_sub(Genotype, 3, 3) ~ "Heterozygous",TRUE ~ "Other" ))
 ```
